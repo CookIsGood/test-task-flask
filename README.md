@@ -3,7 +3,7 @@
 Данный проект создан в качестве тестового задания.
 
 ## Demonstration
-[test-task-flask](https://test-task-fastapi.herokuapp.com/)
+[test-task-flask](https://test-task-flask.herokuapp.com/)
 
 ## How to run
 Как запустить проект:
