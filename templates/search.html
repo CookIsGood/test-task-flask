@@ -1,0 +1,97 @@
+{% extends 'base_templates/base_main.html' %}
+
+{% block title %}
+<title>FindMe</title>
+{% endblock %}
+
+{% block links %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css"/>
+<link rel="stylesheet" href="https://cdn.datatables.net/1.11.1/css/dataTables.bootstrap4.min.css"/>
+{% endblock %}
+
+{% block content %}
+
+<section class="py-5">
+
+            <!-- Page content-->
+    <div class="px-5">
+    <div class="pt-5">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-5 mx-auto">
+                        <div class="card card-body">
+                             <form id="submitForm" action="" method="post" data-parsley-validate="" data-parsley-errors-messages-disabled="true" novalidate="" _lpchecked="1">
+                                 {{ form.hidden_tag() }}
+                                 <div class="form-group required">
+                                    <lSabel for="email"> Enter animal name </lSabel>
+                                     {{ form.name(class="form-control") }}
+                                </div>
+                                <div class="form-group pt-1">
+                                     {{ form.submit(class="btn btn-primary btn-block") }}
+                                </div>
+                            </form>
+                            {% for field in form if field.name not in ['csrf_token', 'submit'] %}
+                            {% if field.errors %}
+                            {% for e in field.errors %}
+                            <div class="alert alert-danger py-3" role="alert">
+                                {{ e }}
+                            </div>
+                            {% endfor %}
+                            {% endif %}
+                            {% endfor %}
+
+                            {% for msg in get_flashed_messages() %}
+                            {% if msg %}
+                            <div class="alert alert-info py-3" role="alert">
+                                {{ msg }}
+                            </div>
+                            {% endif %}
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </div>
+         </div>
+
+
+    <div class="container">
+        <table class="table table-bordered myDataTable" style="width:100%">
+            <thead>
+                <tr>
+                   <th scope="col">id</th>
+                    <th scope="col">name</th>
+                    <th scope="col">type</th>
+                    <th scope="col">speed</th>
+                    <th scope="col">predator</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for animal in content["result_search"] %}
+            <tr>
+                <td>{{ animal['id'] }}</td>
+                <td>{{ animal['name'] }}</td>
+                <td>{{ animal['type'] }}</td>
+                <td>{{ animal['speed'] }}</td>
+                <td>{{ animal['predator'] }}</td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+</section>
+{% endblock %}
+
+{% block scripts %}
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+        <script src="https://cdn.datatables.net/1.11.1/js/jquery.dataTables.min.js"></script>
+        <script src="https://cdn.datatables.net/1.11.1/js/dataTables.bootstrap5.min.js"></script>
+
+        <script>
+                $('.myDataTable').DataTable({
+
+                lengthMenu: [[5, 10, 25, 50, -1], [5, 10, 25, 50, "All"]]
+               });
+        </script>
+{% endblock %}
