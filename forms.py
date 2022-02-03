@@ -5,7 +5,7 @@ import re
 
 
 def check_animal_name(form, field):
-    match = re.fullmatch(r"[a-zA-Z]{1,50}", field.data)
+    match = re.fullmatch(r"[а-яА-Я]{2,50}", field.data)
     if not match:
         raise ValidationError('Animal name contains invalid characters!')
 
