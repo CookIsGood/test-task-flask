@@ -20,7 +20,7 @@
                 <div class="row">
                     <div class="col-md-5 mx-auto">
                         <div class="card card-body">
-                             <form id="submitForm" action="" method="post" data-parsley-validate="" data-parsley-errors-messages-disabled="true" novalidate="" _lpchecked="1">
+                             <form id="submitForm" action="{{ url_for('animals.search') }}" method="post" data-parsley-validate="" data-parsley-errors-messages-disabled="true" novalidate="" _lpchecked="1">
                                  {{ search_form.hidden_tag() }}
                                  <div class="form-group required">
                                     <lSabel for="name"> Enter animal name </lSabel>
@@ -41,7 +41,7 @@
                             {% endfor %}
 
 
-                            <form id="submitForm" action="" method="post" data-parsley-validate="" data-parsley-errors-messages-disabled="true" novalidate="" _lpchecked="1">
+                            <form id="submitForm" action="{{ url_for('animals.create_animal') }}" method="post" data-parsley-validate="" data-parsley-errors-messages-disabled="true" novalidate="" _lpchecked="1">
                                  {{ create_form.hidden_tag() }}
                                  <div class="form-group required">
                                     <lSabel for="name"> Enter animal name </lSabel>
