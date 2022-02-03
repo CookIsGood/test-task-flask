@@ -6,3 +6,10 @@ class AnimalOut(BaseModel):
     name: str
     type: str
     speed: int
+
+
+class AnimalIn(BaseModel):
+    name: str
+    type: str
+    speed: int
+    predator: bool
